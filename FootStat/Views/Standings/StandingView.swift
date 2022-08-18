@@ -18,7 +18,8 @@ struct StandingView: View {
     var body: some View {
         VStack {
             standingHeader
-            if let unwrappedStanding = season.standings {
+            if let leagueIndex = footballViewModel.leagues.firstIndex(where: { $0.id == league.id }),
+               let unwrappedStanding = footballViewModel.leagues[leagueIndex].seasons?.first(where: {$0.year == season.year})?.standings {
                 ScrollView {
                     VStack {
                         ForEach(unwrappedStanding, id: \.team.id) { standing in
@@ -41,9 +42,7 @@ struct StandingView: View {
         }
         .task(id: season.year) {
             Task {
-                try await footballViewModel.loadStandings(forLeague: league.id, year: season.year) {
-                    season.standings = $0
-                }
+                try await footballViewModel.loadStandings(forLeague: league.id, year: season.year)
             }
         }
     }

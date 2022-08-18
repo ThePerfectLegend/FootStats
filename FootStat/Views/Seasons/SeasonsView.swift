@@ -29,9 +29,8 @@ struct SeasonsView: View {
             }
         }
         .navigationBarTitle(Text(league.abbr), displayMode: .inline)
-        .onAppear {
+        .task(id: league.id) {
             Task {
-                // не нужно делать вызов если данные уже есть в модели?
                 try await footballViewModel.loadSeasons(forLeague: league.id)
             }
         }

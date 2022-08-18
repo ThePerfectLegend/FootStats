@@ -50,7 +50,7 @@ import Foundation
         }
     }
     
-    func loadStandings(forLeague id: String, year: Int, completion: (([Standing]) -> Void)?) async throws {
+    func loadStandings(forLeague id: String, year: Int) async throws {
         guard let url = URL(string: "https://api-football-standings.azharimm.site/leagues/\(id)/standings?season=\(String(year))&sort=asc") else {
             throw URLError(.badURL)
         }
@@ -67,7 +67,8 @@ import Foundation
            let unwrappedStanding = standings.data?.standings {
             leagues[responsedLeagueIndex].seasons![responsedYearIndex].responseStatus = standings.status
             leagues[responsedLeagueIndex].seasons![responsedYearIndex].standings = unwrappedStanding
-            completion?(unwrappedStanding)
+        } else {
+            throw URLError(.cannotWriteToFile)
         }
     }
 }

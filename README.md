@@ -1,5 +1,5 @@
 # FootStats
-Test app for the InStat company. The Project uses MVVM architecture, interface created with SwiftUI, network requests with async/await using API from https://github.com/azharimm/football-standings-api
+The Project uses MVVM architecture, interface created with SwiftUI, network requests with async/await using API from https://github.com/azharimm/football-standings-api
 
 
 ![GitHubDemoFootStats](https://user-images.githubusercontent.com/94032706/184534229-3aca6ea1-2b68-41e5-a9f2-6bc65ed46d60.png)
